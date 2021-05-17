@@ -1,3 +1,5 @@
+
+
 object WallService {
     var posts = emptyArray<MyPost>()
 
@@ -16,32 +18,15 @@ object WallService {
     }
 
 
-    fun update(post: Array<MyPost>, item: Int) {
-        var resultUpdate = true
-        for (post in posts) {
-            if (item == post.id){
-                var result = post.copy(text = "text")
-                resultUpdate = true
-
-                break
-            } else {
-                resultUpdate = false
-
+    fun update(post: Array<MyPost>, item: Int): Boolean {
+        for ((index, post) in posts.withIndex()) {
+            if (item == post.id) {
+                posts[index] = post.copy(id = post.id, date = post.date)
+                return true
             }
-
         }
-        println()
-        print(resultUpdate)
-        println()
-        }
-
-
-
-
-
-
-
-
+        return false
+    }
 
 
 

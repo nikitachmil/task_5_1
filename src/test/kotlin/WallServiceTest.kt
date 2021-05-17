@@ -1,77 +1,84 @@
+import WallService.add
+import WallService.printAllPosts
 import org.junit.Assert.*
 import org.junit.Test
 
-class WallServiceTest{
+class WallServiceTest {
+
     @Test
-    fun add(post: MyPost): MyPost {
 
-        var posts = emptyArray<MyPost>()
-        posts += post.copy(id = if (posts.isEmpty()) 1 else posts.last().id + 1)
-        return posts.last()
-
-        var result = post.id
-
-        assertEquals( 0 < post.id
-            , result
+    fun add() {
+        val Post = MyPost(
+            1, 2, 3, 200, "text", 1, 2, false,
+            Comments(200, true, true, true, false),
+            Copyright(1, "face", "friend", "Chandler"),
+            Likes(200, true, true, true),
+            Reposts(4, false),
+            Views(800),
+            "ross",
+            false,
+            false, false, false,
+            true, true,
+            Donute(true, 2, Placeholder(true), true, "Yes"),
+            1
         )
-    }
-    @Test
-    fun updateTrue(post: Array<MyPost>, item: Int) {
-        var resultUpdate = true
+        var result = add(Post)
+        //print(result)
 
-        var posts = emptyArray<MyPost>()
 
-        for (post in posts) {
-            if (item == post.id){
-                var result = post.copy(text = "text")
-                resultUpdate = true
 
-                break
-            } else {
-                resultUpdate = false
+        assertEquals(
+            MyPost(
+                1, 2, 3, 200, "text", 1, 2, false,
+                Comments(200, true, true, true, false),
+                Copyright(1, "face", "friend", "Chandler"),
+                Likes(200, true, true, true),
+                Reposts(4, false),
+                Views(800),
+                "ross",
+                false,
+                false, false, false,
+                true, true,
+                Donute(true, 2, Placeholder(true), true, "Yes"),
+                1
+            ),
 
-            }
-
-        }
-        println()
-        print(resultUpdate)
-        println()
-
-        assertEquals( true
-            , resultUpdate
+            result
         )
+
+
     }
 
     @Test
-    fun updateFalse(post: Array<MyPost>, item: Int) {
-        var resultUpdate = true
+    fun update() {
+        var update = 1
+        var result = WallService.update(WallService.posts, update)
 
-        var posts = emptyArray<MyPost>()
-
-        for (post in posts) {
-            if (item == post.id){
-                var result = post.copy(text = "text")
-                resultUpdate = true
-
-                break
-            } else {
-                resultUpdate = false
-
-            }
-
-        }
-        println()
-        print(resultUpdate)
-        println()
-
-        assertEquals( false
-            , resultUpdate
+        assertEquals(
+            true,
+            WallService.update(WallService.posts, update)
         )
     }
 
+    @Test
+    fun updateFalse() {
+        var update = 8
+        var result = WallService.update(WallService.posts, update)
 
-
-
+        assertEquals(
+            false,
+            result,
+        )
+    }
 
 }
+
+
+
+
+
+
+
+
+
 
