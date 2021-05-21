@@ -50,10 +50,11 @@ fun main() {
     WallService.add(Post)
     WallService.add(Post2)
     WallService.add(Post3)
-    WallService.printAllPosts(WallService.posts)
+   WallService.printAllPosts(WallService.posts)
     var result = WallService.update(WallService.posts,update)
-
     println(result)
+
+
 
 }
 

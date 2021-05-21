@@ -18,7 +18,7 @@ object WallService {
     }
 
 
-    fun update(post: Array<MyPost>, item: Int): Boolean {
+    fun update(post: Array<MyPost>, item: Int): Any  {
         for ((index, post) in posts.withIndex()) {
             if (item == post.id) {
                 posts[index] = post.copy(id = post.id, date = post.date)

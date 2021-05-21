@@ -1,5 +1,4 @@
 import WallService.add
-import WallService.printAllPosts
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -52,22 +51,61 @@ class WallServiceTest {
     @Test
     fun update() {
         var update = 1
-        var result = WallService.update(WallService.posts, update)
+        var posts = emptyArray<MyPost>()
+
+
+        val Post = MyPost(
+            1, 2, 3, 200, "text", 1, 2, false,
+            Comments(200, true, true, true, false),
+            Copyright(1, "face", "friend", "Chandler"),
+            Likes(200, true, true, true),
+            Reposts(4, false),
+            Views(800),
+            "ross",
+            false,
+            false, false, false,
+            true, true,
+            Donute(true, 2, Placeholder(true), true, "Yes"),
+            1
+        )
+        add(Post)
+        posts += Post.copy(id = if (posts.isEmpty()) 1 else posts.last().id + 1)
+
+
+
 
         assertEquals(
             true,
-            WallService.update(WallService.posts, update)
+            WallService.update(posts, update)
         )
     }
 
     @Test
     fun updateFalse() {
+        val Post = MyPost(
+            1, 2, 3, 200, "text", 1, 2, false,
+            Comments(200, true, true, true, false),
+            Copyright(1, "face", "friend", "Chandler"),
+            Likes(200, true, true, true),
+            Reposts(4, false),
+            Views(800),
+            "ross",
+            false,
+            false, false, false,
+            true, true,
+            Donute(true, 2, Placeholder(true), true, "Yes"),
+            1
+        )
+        add(Post)
+        var posts = emptyArray<MyPost>()
+        posts += Post.copy(id = if (posts.isEmpty()) 1 else posts.last().id + 1)
+
         var update = 8
-        var result = WallService.update(WallService.posts, update)
+
 
         assertEquals(
             false,
-            result,
+            WallService.update(posts, update),
         )
     }
 
