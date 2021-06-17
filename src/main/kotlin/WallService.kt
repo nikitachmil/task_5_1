@@ -1,5 +1,3 @@
-
-
 object WallService {
     var posts = emptyArray<MyPost>()
 
@@ -27,6 +25,36 @@ object WallService {
         }
         return false
     }
+
+    fun checkCopyrightLink(post: MyPost): Any{
+        var result = post.link.url
+        return result
+    }
+    fun closeComments(post: MyPost): Any? {
+        var result = post.commentInfo?.update(post)
+
+      return result
+
+    }
+   fun creatComment(post: MyPost, text: String) {
+       post.text = text
+   }
+    fun delete(post: MyPost): Any{
+        var result = post.copy(post = null)
+        return result
+    }
+    fun deleteComment(post: MyPost): Any{
+        var result = post.copy(commentInfo = null)
+        return result
+    }
+    fun edit(post: MyPost): Unit? {
+        return post.commentInfo?.editComment(1)
+    }
+
+
+
+
+
 
 
 
